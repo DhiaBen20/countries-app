@@ -1,11 +1,11 @@
-import { useCountry } from "../../queries";
-
-export default function CountryFlag({ country }) {
-    let countryQuery = useCountry(country);
-
+export default function CountryFlag({ countryFlag }) {
     return (
         <div className="md:h-[400px]">
-            <img src={countryQuery.data.flags.svg} className="w-full h-full object-cover" alt="" />
+            <img
+                src={countryFlag.svg}
+                className="h-full w-full object-cover"
+                alt=""
+            />
         </div>
     );
 }

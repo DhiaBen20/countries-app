@@ -1,24 +1,16 @@
-import { useCountry } from "../../queries";
 import { formatPopulation } from "../../utlities";
 import CountryBorders from "./CountryBorders";
-import CountryBoundries from "./CountryBorders";
 import ListItem from "./ListItem";
 
 export default function CountryDetails({ country }) {
-    let countryQuery = useCountry(country);
-
-    let name = countryQuery.data.name;
-    let nativeName = countryQuery.data.nativeName;
-    let population = formatPopulation(countryQuery.data.population);
-    let region = countryQuery.data.region;
-    let capital = countryQuery.data.capital;
-    let tld = countryQuery.data.topLevelDomain;
-    let currencies = countryQuery.data.currencies
-        .map((c) => c.name)
-        .join(", ");
-    let languages = countryQuery.data.languages
-        .map((l) => l.name)
-        .join(", ");
+    let name = country.name;
+    let nativeName = country.nativeName;
+    let population = formatPopulation(country.population);
+    let region = country.region;
+    let capital = country.capital;
+    let tld = country.topLevelDomain;
+    let currencies = country.currencies.map((c) => c.name).join(", ");
+    let languages = country.languages.map((l) => l.name).join(", ");
 
     return (
         <div>
@@ -38,7 +30,7 @@ export default function CountryDetails({ country }) {
                 </ul>
             </div>
 
-            <CountryBorders country={country} />
+            <CountryBorders borders={country.borders} />
         </div>
     );
 }

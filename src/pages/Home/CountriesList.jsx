@@ -3,15 +3,15 @@ import CountryCard from "./CountryCard";
 
 function List({ countries }) {
     return (
-        <div className="px-5 md:px-0 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[50px] md:gap-[75px]">
+        <div className="grid gap-[50px] px-5 md:grid-cols-2 md:gap-[75px] md:px-0 lg:grid-cols-3 xl:grid-cols-4">
             {countries.map((c) => (
                 <CountryCard
-                    key={c.name.common}
+                    key={c.name}
                     flag={c.flags.svg}
-                    country={c.name.common}
+                    country={c.name}
                     population={c.population}
                     region={c.region}
-                    capital={c.capital[0]}
+                    capital={c.capital}
                 />
             ))}
         </div>

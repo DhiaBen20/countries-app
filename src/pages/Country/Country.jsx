@@ -16,8 +16,8 @@ export default function Country() {
             {countryQuery.isLoading && <Skeleton />}
             {countryQuery.isSuccess && (
                 <div className="mt-20 gap-24 md:grid md:grid-cols-2">
-                    <CountryFlag country={country} />
-                    <CountryDetails country={country} />
+                    <CountryFlag countryFlag={countryQuery.data.flags} />
+                    <CountryDetails country={countryQuery.data} />
                 </div>
             )}
         </div>

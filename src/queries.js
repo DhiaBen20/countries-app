@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 export function useCountries() {
     return useQuery(["countries"], () =>
         fetch(
-            "https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags"
+            "https://restcountries.com/v2/all?fields=name,capital,population,region,flags"
         ).then((res) => res.json())
     );
 }
@@ -13,7 +13,7 @@ export function useCountriesSearch(query) {
         ["countries", { query }],
         () =>
             fetch(
-                `https://restcountries.com/v3.1/name/${query}?fields=name,capital,population,region,flags`
+                `https://restcountries.com/v2/name/${query}?fields=name,capital,population,region,flags`
             )
                 .then((res) => {
                     return res.json();
@@ -36,7 +36,7 @@ export function useRegionCounties(region) {
         ["countries", region],
         () =>
             fetch(
-                `https://restcountries.com/v3.1/region/${region}?fields=name,capital,population,region,flags`
+                `https://restcountries.com/v2/region/${region}?fields=name,capital,population,region,flags`
             ).then((res) => res.json()),
         {
             enabled: !!region,

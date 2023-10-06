@@ -5,7 +5,6 @@ export default function BorderLink({ code }) {
     let countryQuery = useCountryByCode(code);
 
     if (countryQuery.isSuccess) {
-        console.log(countryQuery.data);
         return (
             <Link
                 to={`/countries/${countryQuery.data.name}`}
