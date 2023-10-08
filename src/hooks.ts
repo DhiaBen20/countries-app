@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 
-export function useCloseOnEscPress(isOpen, close) {
+export function useCloseOnEscPress(isOpen: boolean, close: () => void) {
     useEffect(() => {
-        function handleKeyDown(e) {
+        function handleKeyDown(e: KeyboardEvent) {
             if (e.code == "Escape") {
                 close();
             }
@@ -17,12 +17,19 @@ export function useCloseOnEscPress(isOpen, close) {
     }, [close, isOpen]);
 }
 
-export function useCloseOnClickOutside(isOpen, close) {
-    let ref = useRef();
+export function useCloseOnClickOutside<T extends HTMLElement>(
+    isOpen: boolean,
+    close: () => void
+) {
+    let ref = useRef<T>(null);
 
     useEffect(() => {
-        function handleClick(e) {
-            if (!ref.current.contains(e.target)) {
+        function handleClick(e: MouseEvent) {
+            if (
+                ref.current &&
+                e.target instanceof Node &&
+                !ref.current.contains(e.target)
+            ) {
                 close();
             }
         }

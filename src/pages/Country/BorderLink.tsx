@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCountryByCode } from "../../queries";
 
-export default function BorderLink({ code }) {
+export default function BorderLink({ code }: { code: string }) {
     let countryQuery = useCountryByCode(code);
 
     if (countryQuery.isSuccess) {

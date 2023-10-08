@@ -1,7 +1,14 @@
 import { debounce } from "lodash";
 import { SearchIcon } from "../../components/icons";
+import { Dispatch, SetStateAction } from "react";
 
-export default function SearchInput({ setQuery, isLoading }) {
+export default function SearchInput({
+    setQuery,
+    isLoading,
+}: {
+    setQuery: Dispatch<SetStateAction<string>>;
+    isLoading: Boolean;
+}) {
     let debouncedSetQuery = debounce((query) => {
         setQuery(query);
     }, 500);
@@ -11,7 +18,11 @@ export default function SearchInput({ setQuery, isLoading }) {
             <span
                 className="inline-flex w-[90px] items-center justify-center md:w-[74px]"
                 onClick={(e) => {
-                    e.currentTarget.nextElementSibling.focus();
+                    const input = e.currentTarget.nextElementSibling;
+
+                    if (input instanceof HTMLElement) {
+                        input.focus();
+                    }
                 }}
             >
                 <SearchIcon />

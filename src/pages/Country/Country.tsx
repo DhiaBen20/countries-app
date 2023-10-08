@@ -6,7 +6,7 @@ import CountryDetails from "./CountryDetails";
 import Skeleton from "./Skeleton";
 
 export default function Country() {
-    let country = useParams().country;
+    let country = useParams().country!;
 
     let countryQuery = useCountry(country);
 
@@ -16,7 +16,7 @@ export default function Country() {
             {countryQuery.isLoading && <Skeleton />}
             {countryQuery.isSuccess && (
                 <div className="mt-20 gap-24 md:grid md:grid-cols-2">
-                    <CountryFlag countryFlag={countryQuery.data.flags} />
+                    <CountryFlag countryFlags={countryQuery.data.flags} />
                     <CountryDetails country={countryQuery.data} />
                 </div>
             )}

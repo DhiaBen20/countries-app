@@ -35,13 +35,13 @@ export default function Home() {
                     <CountriesList
                         countries={
                             !query && !region
-                                ? countriesQuery.data
+                                ? countriesQuery.data!
                                 : searchQuery.isSuccess || regionQuery.isSuccess
                                 ? resultsIntersection(
                                       searchQuery.isSuccess && searchQuery.data,
                                       regionQuery.isSuccess && regionQuery.data
                                   )
-                                : countriesQuery.data
+                                : []
                         }
                     />
                 </>

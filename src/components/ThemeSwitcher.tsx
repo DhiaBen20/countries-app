@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MoonIcon, MoonIconsSolid } from "./icons";
 
 export default function ModeSwticher() {
-    let [mode, setMode] = useState(() => {
+    let [mode, setMode] = useState<"dark" | "light">(() => {
         if (
             ("mode" in localStorage && localStorage.mode == "dark") ||
             window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -22,7 +22,8 @@ export default function ModeSwticher() {
     }, [mode]);
 
     function handleClick() {
-        let nextMode = mode === "light" ? "dark" : "light";
+        let nextMode =
+            mode === "light" ? ("dark" as const) : ("light" as const);
         localStorage.mode = nextMode;
         setMode(nextMode);
     }
@@ -30,7 +31,7 @@ export default function ModeSwticher() {
     return (
         <button
             onClick={handleClick}
-            className="flex items-center gap-3 font-[600] focus:ring focus:outline-none"
+            className="flex items-center gap-3 font-[600] focus:outline-none focus:ring"
         >
             {mode == "light" && <MoonIcon />}
             {mode == "dark" && <MoonIconsSolid />}
